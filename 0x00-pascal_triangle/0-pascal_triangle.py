@@ -4,8 +4,9 @@ Module returns a list of list of integers
 representing the Pascal's triangle of n.
 """
 
+
 def pascal_triangle(n):
-    """Pascal’s triangle of n
+    """Pascals triangle of n
 
     Args:
       n (int): height of triangle
