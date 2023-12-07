@@ -6,42 +6,21 @@ can all be opened if each box has a key to another box.
 
 
 def canUnlockAll(boxes):
-    """Check if all boxes can be opened.
-    boxes[0] is unlocked
+    """Determine if all boxes can be opened
 
     Args:
-      n (list[lists]): depth 1 - list of boxes
-                       depth 2 - keys in the box
+        boxes (list): list of lists of keys
 
     Returns:
-      whether all boxes can be unlocked
+        bool: True if all boxes can be opened, False otherwise
     """
-    def openBoxes(keys):
-        openedBoxContent = None     # Get the keys (if any) from opened boxes
+    opened = set([0])
+    keys = list(boxes[0])
 
-        # Go through the keys and open their respective box
-        for key in keys:
-            if key < len(boxes):
-                if (openedBoxContent is None):
-                    openedBoxContent = []
-                openedBoxContent += boxes[key]
+    while keys:
+        key = keys.pop()
+        if key not in opened and key < len(boxes):
+            opened.add(key)
+            keys.extend(boxes[key])
 
-        if (openedBoxContent is None):
-            return None
-        return list(set(openedBoxContent))
-
-    keys = [0]
-    usedKeys = []
-
-    while True:
-        foundKeys = openBoxes(keys)
-        if (foundKeys is None):
-            # No boxes could be opened with the keys we have
-            break
-
-        # Track already used keys, don't reuse them in next iteration
-        usedKeys = list(set(usedKeys + keys))
-        keys = [key for key in foundKeys if key not in usedKeys]
-
-    # Check if all the boxes in the sequence/positions have been unlocked
-    return sum(usedKeys) == sum(range(0, len(boxes)))
+    return len(opened) == len(boxes)
