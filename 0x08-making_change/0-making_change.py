@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Function to check number of minimum coins to reach a total
+"""
 
 def makeChange(coins, total):
     """Given a pile of coins of different values,
