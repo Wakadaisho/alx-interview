@@ -17,8 +17,8 @@ def isWinner(x, nums):
         """
         if primes.count(x):
             return True
-        if primes[-1] > x:
-            return False
+        # if primes[-1] > x:
+        #     return False
         for i in primes:
             if x % i == 0:
                 return False
