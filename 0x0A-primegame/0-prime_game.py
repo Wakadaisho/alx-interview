@@ -15,13 +15,15 @@ def isWinner(x, nums):
     def isPrime(x):
         """Return whether a number is prime or not
         """
-        if primes.count(x):
+        if x < 2:
+            return False
+        if x in primes:
             return True
-        for i in primes:
-            if x % i == 0:
-                return False
         if primes[-1] > x:
             return False
+        for i in range(2, int(x ** 0.5) + 1):
+            if x % i == 0:
+                return False
         primes.append(x)
         return True
 
